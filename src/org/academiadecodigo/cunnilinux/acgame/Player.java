@@ -3,16 +3,27 @@ package org.academiadecodigo.cunnilinux.acgame;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Player {
-    int playerNumber;
+    private int playerNumber;
+    public int getPlayerNumber() {
+        return playerNumber;
+    }
+
     private Characters character;
+    private int iChar;
     private String name;
-    private Picture standing;
-    private Picture walking;
-    private Picture punching;
-    private Picture specialMove;
+    private String[] standingPicFiles;
+    private String[] walkForwardPicFiles;
+    private String[] walkBackwardPicFiles;
+    private String[] punchPicFiles;
+    private String[] specialMovePicFiles;
+    private Picture[] standingPics;
+    private Picture[] walkForwardPics;
+    private Picture[] walkBackwardPics;
+    private Picture[] punchPics;
+    private Picture[] specialMovePics;
     private int health;
-    int x;
-    int y; // TODO define
+    private int x;
+    private int y; // TODO define
 
     public void setY(int y) {
         this.y = y;
@@ -26,13 +37,44 @@ public class Player {
     public Player(int playerNumber, Characters character){
         this.playerNumber = playerNumber;
         this.character = character;
+        iChar = character.getiChar();
         health = 10;
         y = 1000;
-        standing = new Picture(x,y,character.getStandingGifFile());
-        walking = new Picture(x,y,character.getStandingGifFile());
-        punching = new Picture(x,y,character.getStandingGifFile());
-        specialMove = new Picture(x,y,character.getStandingGifFile());
+        // STANDING PICS
+        standingPicFiles = character.getStandingPicFiles(character.getiChar()).split(",");
+        for (int i = 0; i < standingPicFiles.length; i++) {
+            standingPics[i] = new Picture(x,y,standingPicFiles[i]);
+        }
+        // WALK FORWARD PICS
+        walkForwardPicFiles = character.getStandingPicFiles(character.getiChar()).split(",");
+        for (int i = 0; i < walkForwardPicFiles.length; i++) {
+            walkForwardPics[i] = new Picture(x,y,walkForwardPicFiles[i]);
+        }
+        // WALK BACKWARD PICS
+        walkBackwardPicFiles = character.getStandingPicFiles(character.getiChar()).split(",");
+        for (int i = 0; i < walkBackwardPicFiles.length; i++) {
+            walkBackwardPics[i] = new Picture(x,y,walkBackwardPicFiles[i]);
+        }
+        // PUNCH PICS
+        punchPicFiles = character.getStandingPicFiles(character.getiChar()).split(",");
+        for (int i = 0; i < punchPicFiles.length; i++) {
+            punchPics[i] = new Picture(x,y,punchPicFiles[i]);
+        }
+        // SPECIAL MOVE PICS
+        specialMovePicFiles = character.getStandingPicFiles(character.getiChar()).split(",");
+        for (int i = 0; i < specialMovePicFiles.length; i++) {
+            specialMovePics[i] = new Picture(x,y,specialMovePicFiles[i]);
+        }
     }
+
+    public void standing(){
+        for (int i = 0; i < standingPics.length; i++) {
+            standingPics[i].draw();
+            Thread.sleep(Game.DELAY);
+            standingPics[i].delete();
+        }
+    }
+
     public void walk(){
 
     }
