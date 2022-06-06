@@ -3,16 +3,32 @@ package org.academiadecodigo.cunnilinux.acgame;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Player {
-    int playerNumber;
+    private int playerNumber;
+    public int getPlayerNumber() {
+        return playerNumber;
+    }
+    private boolean keepStanding = true;
     private Characters character;
+    private int iChar;
+
+    public int getiChar() {
+        return iChar;
+    }
+
     private String name;
-    private Picture standing;
-    private Picture walking;
-    private Picture punching;
-    private Picture specialMove;
+    private String[] standingPicFiles;
+    private String[] walkForwardPicFiles;
+    private String[] walkBackwardPicFiles;
+    private String[] punchPicFiles;
+    private String[] specialMovePicFiles;
+    private Picture[] standingPics;
+    private Picture[] walkForwardPics;
+    private Picture[] walkBackwardPics;
+    private Picture[] punchPics;
+    private Picture[] specialMovePics;
     private int health;
-    int x;
-    int y; // TODO define
+    private int x;
+    private int y; // TODO define
 
     public void setY(int y) {
         this.y = y;
@@ -23,16 +39,51 @@ public class Player {
     }
 
     private static final int WALK_INC = 100;
-    public Player(int playerNumber, Characters character){
+    public Player(int playerNumber,int x, Characters character){
         this.playerNumber = playerNumber;
+        this.x = x;
         this.character = character;
+        iChar = character.getCharIndex();
         health = 10;
-        y = 1000;
-        standing = new Picture(x,y,character.getStandingGifFile());
-        walking = new Picture(x,y,character.getStandingGifFile());
-        punching = new Picture(x,y,character.getStandingGifFile());
-        specialMove = new Picture(x,y,character.getStandingGifFile());
+        y = 100;
+        String picDir = "/Users/codecadet/repos/myrepo/academiacodigo/ac-game/src/org/academiadecodigo/cunnilinux/acgame/pics/";
+        // STANDING PICS
+        standingPicFiles = character.getStandingPicFiles(character.getCharIndex()).split(",");
+        standingPics = new Picture[standingPicFiles.length];
+        for (int i = 0; i < standingPicFiles.length; i++) {
+            standingPics[i] = new Picture(x,y,picDir + standingPicFiles[i]);
+        }
+/*        // WALK FORWARD PICS
+        walkForwardPicFiles = character.getStandingPicFiles(character.getCharIndex()).split(",");
+        for (int i = 0; i < walkForwardPicFiles.length; i++) {
+            walkForwardPics[i] = new Picture(x,y,walkForwardPicFiles[i]);
+        }
+        // WALK BACKWARD PICS
+        walkBackwardPicFiles = character.getStandingPicFiles(character.getCharIndex()).split(",");
+        for (int i = 0; i < walkBackwardPicFiles.length; i++) {
+            walkBackwardPics[i] = new Picture(x,y,walkBackwardPicFiles[i]);
+        }
+        // PUNCH PICS
+        punchPicFiles = character.getStandingPicFiles(character.getCharIndex()).split(",");
+        for (int i = 0; i < punchPicFiles.length; i++) {
+            punchPics[i] = new Picture(x,y,punchPicFiles[i]);
+        }
+        // SPECIAL MOVE PICS
+        specialMovePicFiles = character.getStandingPicFiles(character.getCharIndex()).split(",");
+        for (int i = 0; i < specialMovePicFiles.length; i++) {
+            specialMovePics[i] = new Picture(x,y,specialMovePicFiles[i]);
+        }*/
     }
+
+    public void standing() throws InterruptedException {
+        for (int i = 0; i < standingPics.length; i++) {
+            standingPics[i].draw();
+            Thread.sleep(Game.DELAY);
+            standingPics[i].delete();
+            if(i == standingPics.length-1 && keepStanding) i=0;
+        }
+    }
+
     public void walk(){
 
     }

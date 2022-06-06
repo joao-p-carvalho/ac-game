@@ -2,14 +2,14 @@ package org.academiadecodigo.cunnilinux.acgame;
 
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
-public class StartMenu extends Background {
+public class FrontPage extends Background {
     private Picture starButton;
     boolean isStartPressed;
 
     public void setStartPressed(boolean startPressed) {
         isStartPressed = startPressed;
     }
-    public StartMenu(){
+    public FrontPage(){
         setPicture("");
     }
     //TODO listen to ENTER KEY to start start
