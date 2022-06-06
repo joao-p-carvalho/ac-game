@@ -13,10 +13,10 @@ public class KeyboardHandlerPlayer1 implements KeyboardHandler {
     public void keyPressed(KeyboardEvent keyboardEvent) {
         switch(keyboardEvent.getKey()) {
             case 65: // A
-                player.walkBackwards();
+                //player.walkBackward();
                 break;
             case 68: // D
-                player.walkForwards();
+                //player.walkForward();
                 break;
             case 67: // C
                 player.punch();
@@ -39,9 +39,26 @@ public class KeyboardHandlerPlayer1 implements KeyboardHandler {
 
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {
-        //switch(keyboardEvent.getKey()) {
-        //    case 83: //S (DOWN)
-        //        player.standing();
-        //}
+        switch(keyboardEvent.getKey()) {
+            case 65: // A: walk backward
+            case 68: // D: walk forward
+                //case 79: // V: KICK
+                //case 38: // W: UP
+                //case 83: // S: DOWN
+                try {
+                    player.standing();
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                break;
+            //break;
+            //case 86: // V
+            //    player.kick();
+            //    break;
+            //case 87: //UP
+            //    break;
+            //case 83: //DOWN
+            //    player.crouch();
+        }
     }
 }

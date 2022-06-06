@@ -9,17 +9,16 @@ public class KeyboardHandlerPlayer2 implements KeyboardHandler {
         this.player = player;
     }
 
-
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
         switch(keyboardEvent.getKey()) {
-            case 37: //LEFT
-                player.walkForwards();
+            case 37: // <-LEFT
+                //player.walkForward();
                 break;
-            case 39: //RIGHT
-                player.walkBackwards();
+            case 39: // ->RIGHT
+                //player.walkBackward();
                 break;
-            case 73: // I
+            case 73: // I: PUNCH
                 player.punch();
                 break;
             case 80: // P
@@ -37,6 +36,26 @@ public class KeyboardHandlerPlayer2 implements KeyboardHandler {
 
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {
-
+        switch(keyboardEvent.getKey()) {
+            case 37: // <- (LEFT ARROW): walk forward
+            case 39: // -> (RIGTH ARROW): walk backward
+            //case 79: // O: kick
+            //case 38: // UP
+            //case 83: // DOWN
+                try {
+                    player.standing();
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                break;
+                //break;
+                //case 79: // O
+                //    player.kick();
+                //    break;
+                //case 38: //UP
+                //    break;
+                //case 83: //DOWN
+                //    player.crouch();
+        }
     }
 }

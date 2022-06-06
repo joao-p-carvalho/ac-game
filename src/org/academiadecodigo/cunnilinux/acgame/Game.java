@@ -5,22 +5,22 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 
 public class Game {
-    public final static int DELAY = 100;
+    public static final long DELAY = 200;
     Player player1;
     Player player2;
     Scenario scenario;
 
-    public Game(){
+    public Game() throws InterruptedException{
         // PLAYER SELECTION PANE
         // TODO PUT SELECTION MENU
-        player1 = new Player(1,Characters.CHAR1);
-        player2 = new Player(2,Characters.CHAR2);
+        player1 = new Player(1,200,Characters.CHAR1);
+        player2 = new Player(2,600,Characters.CHAR2);
         KeyboardHandlerPlayer1 kbhP1 = new KeyboardHandlerPlayer1(player1);
         KeyboardHandlerPlayer2 kbhP2 = new KeyboardHandlerPlayer2(player2);
         Keyboard keyboardP1 = new Keyboard(kbhP1);
         Keyboard keyboardP2 = new Keyboard(kbhP2);
 
-        FrontPage startMenu = new FrontPage();
+        //FrontPage startMenu = new FrontPage();
     }
 
     public void startFrontPage(){
@@ -28,7 +28,7 @@ public class Game {
         FrontPage frontPage = new FrontPage();
     }
 
-    playerSelection(){
+    public void playerSelection(){
 
     }
 

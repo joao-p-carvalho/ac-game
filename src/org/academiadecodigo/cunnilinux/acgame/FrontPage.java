@@ -11,7 +11,6 @@ public class FrontPage extends Background {
     }
     public FrontPage(){
         setPicture("");
-        draw.
     }
     //TODO listen to ENTER KEY to start start
 

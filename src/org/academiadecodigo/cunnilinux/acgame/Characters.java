@@ -6,12 +6,12 @@ public enum Characters {
     CHAR3(2),
     CHAR4(3);
 
-    private int iChar;
+    private int charIndex;
     private String name;
-    private String[] standingPic = new String[10];
-    private String walkingGifFile;
-    private String punchingGifFile;
-    private String specialMoveGifFile;
+    //private String[] standingPics;
+    //private String walkingPics;
+    //private String punchingGifFile;
+    //private String specialMoveGifFile;
     private String[] characterNames = {
             "PEDROGAS",
             "RODRIKILLER",
@@ -19,8 +19,8 @@ public enum Characters {
             "JONNY OAK"
     };
 
-    public int getiChar() {
-        return iChar;
+    public int getCharIndex() {
+        return charIndex;
     }
     //////////////////////////////////////////////////////////////////
     //   PICTURE SEQUENCES & GETTERS FOR EACH CHARACTER 0,1,2,3     //
@@ -29,15 +29,15 @@ public enum Characters {
     //------------------------------//
     //           STANDING:          //
     //------------------------------//
-    String standingPicsChar0 = "c0s1.png,c0s2.png,c0s3.png,c0s4.png,c0s5.png,c0s6.png,c0s7.png,c0s8.png";
-    String standingPicsChar1 = "c1s1.png,c1s2.png,c1s3.png,c1s4.png,c1s5.png,c1s6.png,c1s7.png,c1s8.png";
-    String standingPicsChar2 = "c2s1.png,c2s2.png,c2s3.png,c2s4.png,c2s5.png,c2s6.png,c2s7.png,c2s8.png";
-    String standingPicsChar3 = "c3s1.png,c3s2.png,c3s3.png,c3s4.png,c3s5.png,c3s6.png,c3s7.png,c3s8.png";
+    String standingPicsChar0 = "c0s0.png,c0s1.png,c0s2.png,c0s3.png,c0s4.png";
+    String standingPicsChar1 = "c1s0.png,c1s1.png,c1s2.png,c1s3.png,c1s4.png,c1s5.png,c1s6.png";
+    //String standingPicsChar2 = "c2s1.png,c2s2.png,c2s3.png,c2s4.png,c2s5.png,c2s6.png,c2s7.png,c2s8.png";
+    //String standingPicsChar3 = "c3s1.png,c3s2.png,c3s3.png,c3s4.png,c3s5.png,c3s6.png,c3s7.png,c3s8.png";
     private String[] standingPics = {
             standingPicsChar0,
-            standingPicsChar1,
-            standingPicsChar2,
-            standingPicsChar3
+            standingPicsChar1
+    //        standingPicsChar2,
+    //        standingPicsChar3
     };
     public String getStandingPicFiles(int iChar) {
         return standingPics[iChar];
@@ -84,19 +84,9 @@ public enum Characters {
             specialMovePicsChar3
     };
 
-    public String getWalkForwardPicFile() {
-        return walkingGifFile;
-    }
 
-    public String getPunchingGifFile() {
-        return punchingGifFile;
-    }
-
-    public String getSpecialMoveGifFile() {
-        return specialMoveGifFile;
-    }
-
-    Characters(int iChar) {
+    Characters(int charIndex) {
+        this.charIndex = charIndex;
         this.characterNames = characterNames;
 /*        for (int i = 0; i < standingPicsChar[iChar]. ; i++) {
             standingPic[i] = standingPicsChar[iChar][i];
