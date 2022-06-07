@@ -55,7 +55,9 @@ public enum Characters {
             walkForwardPicsChar2,
             walkForwardPicsChar3
     };
-
+    public String getWalkForwardPicFiles(int iChar) {
+        return walkForwardPics[iChar];
+    }
     //------------------------------//
     //          WALK BACKWARD:      //
     //------------------------------//
@@ -69,19 +71,47 @@ public enum Characters {
             walkBackwardPicsChar2,
             walkBackwardPicsChar3
     };
-
     //------------------------------//
     //            PUNCH:            //
     //------------------------------//
-    String specialMovePicsChar0 = "c0sm0.png,c0sm1.png,c0sm2.png,c0sm3.png,c0sm4.png,c0sm5.png,c0sm6.png,c0sm7.png,c0sm8.png";
-    String specialMovePicsChar1 = "c1sm0.png,c1sm1.png,c1sm2.png,c1sm3.png,c1sm4.png,c1sm5.png,c1sm6.png,c1sm7.png,c1sm8.png";
-    String specialMovePicsChar2 = "c2sm0.png,c2sm1.png,c2sm2.png,c2sm3.png,c2sm4.png,c2sm5.png,c2sm6.png,c2sm7.png,c2sm8.png";
-    String specialMovePicsChar3 = "c3sm0.png,c3sm1.png,c3sm2.png,c3sm3.png,c3sm4.png,c3sm5.png,c3sm6.png,c3sm7.png,c3sm8.png";
+    String punchPicsChar0 = "c0p0.png,c0p1.png,c0p2.png,c0p3.png,c0p4.png,c0p5.png,c0p6.png,c0p7.png";
+    String punchPicsChar1 = "c1p0.png,c1p1.png,c1p2.png,c1p3.png,c1p4.png,c1p5.png,c1p6.png";
+    //String punchPicsChar2 = "c2p0.png,c2p1.png,c2p2.png,c2p3.png,c2p4.png,c2p5.png,c2p6.png,c2p7.png,c2p8.png";
+    //String punchPicsChar3 = "c3p0.png,c3p1.png,c3p2.png,c3p3.png,c3p4.png,c3p5.png,c3p6.png,c3p7.png,c3p8.png";
+    private String[] punchPics = {
+            punchPicsChar0,
+            punchPicsChar1,
+            //        punchPicsChar2,
+            //        punchPicsChar3
+    };
+    public String getPunchPicFiles(int iChar) {
+        return punchPics[iChar];
+    }
+    //------------------------------------//
+    //            GOT PUNCHED:            //
+    //------------------------------------//
+    String gotPunchedPicsChar0 = "c0p0.png,c0p1.png,c0p2.png,c0p3.png,c0p4.png,c0p5.png,c0p6.png,c0p7.png";
+    String gotPunchedPicsChar1 = "c1p0.png,c1p1.png,c1p2.png,c1p3.png,c1p4.png,c1p5.png";
+    //String gotPunchedPicsChar2 = "c2p0.png,c2p1.png,c2p2.png,c2p3.png,c2p4.png,c2p5.png,c2p6.png,c2p7.png,c2p8.png";
+    //String gotPunchedPicsChar3 = "c3p0.png,c3p1.png,c3p2.png,c3p3.png,c3p4.png,c3p5.png,c3p6.png,c3p7.png,c3p8.png";
+    private String[] gotPunchedPics = {
+            gotPunchedPicsChar0,
+            gotPunchedPicsChar1,
+            //        gotPunchedPicsChar2,
+            //        gotPunchedPicsChar3
+    };
+    //------------------------------//
+    //            SPECIAL MOVE:            //
+    //------------------------------//
+    String specialMovePicsChar0 = "c0p0.png,c0p1.png,c0p2.png,c0p3.png,c0p4.png,c0p5.png,c0p6.png,c0p7.png,c0p8.png";
+    String specialMovePicsChar1 = "c1p0.png,c1p1.png,c1p2.png,c1p3.png,c1p4.png,c1p5.png,c1p6.png,c1p7.png,c1p8.png";
+    //String specialMovePicsChar2 = "c2p0.png,c2p1.png,c2p2.png,c2p3.png,c2p4.png,c2p5.png,c2p6.png,c2p7.png,c2p8.png";
+    //String specialMovePicsChar3 = "c3p0.png,c3p1.png,c3p2.png,c3p3.png,c3p4.png,c3p5.png,c3p6.png,c3p7.png,c3p8.png";
     private String[] specialMovePics = {
             specialMovePicsChar0,
             specialMovePicsChar1,
-            specialMovePicsChar2,
-            specialMovePicsChar3
+    //        specialMovePicsChar2,
+    //        specialMovePicsChar3
     };
 
 

@@ -3,27 +3,42 @@ package org.academiadecodigo.cunnilinux.acgame;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 
+import static org.academiadecodigo.cunnilinux.acgame.WhatNow.*;
+
 public class KeyboardHandlerPlayer2 implements KeyboardHandler {
-    Player player;
-    public KeyboardHandlerPlayer2(Player player) {
-        this.player = player;
+    Player player2;
+    public KeyboardHandlerPlayer2(Player player2) {
+        this.player2 = player2;
     }
 
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
         switch(keyboardEvent.getKey()) {
             case 37: // <-LEFT
-                //player.walkForward();
+                player2.setWhatNow(WALKFORWARD);
+                //player.showAction(LEFT);
                 break;
             case 39: // ->RIGHT
-                //player.walkBackward();
+                player2.setWhatNow(WALKBACKWARD);
+                break;
+            case 73: // I: PUNCH
+                player2.setWhatNow(PUNCH);
+                //break;
+            //case 80: // P
+                //player2.setWhatNow(SPECIALMOVE);
+                //break;*/
+/*            case 37: // <-LEFT
+                player.walkForward();
+                break;
+            case 39: // ->RIGHT
+                player.walkBackward();
                 break;
             case 73: // I: PUNCH
                 player.punch();
                 break;
             case 80: // P
                 player.specialMove();
-                //break;
+                //break;*/
             //case 79: // O
             //    player.kick();
             //    break;
@@ -37,16 +52,13 @@ public class KeyboardHandlerPlayer2 implements KeyboardHandler {
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {
         switch(keyboardEvent.getKey()) {
-            case 37: // <- (LEFT ARROW): walk forward
-            case 39: // -> (RIGTH ARROW): walk backward
+            case 37: // <- (LEFT ARROW):
+            case 39: // -> (RIGTH ARROW):
+            case 73:
+                player2.setWhatNow(STANDING);
             //case 79: // O: kick
             //case 38: // UP
             //case 83: // DOWN
-                try {
-                    player.standing();
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
                 break;
                 //break;
                 //case 79: // O
