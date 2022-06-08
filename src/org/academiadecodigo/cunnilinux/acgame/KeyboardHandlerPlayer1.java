@@ -16,11 +16,9 @@ public class KeyboardHandlerPlayer1 implements KeyboardHandler {
         switch(keyboardEvent.getKey()) {
             case 65: // A
                 player1.setCurrentMove(WALKBACKWARD);
-                player1.walkBackward();
                 break;
             case 68: // D
                 player1.setCurrentMove(WALKFORWARD);
-                player1.walkForward();
                 break;
             case 67: // C
                 player1.setCurrentMove(PUNCH);

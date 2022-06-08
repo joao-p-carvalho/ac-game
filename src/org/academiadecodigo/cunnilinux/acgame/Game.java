@@ -4,19 +4,22 @@ import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 
+import java.awt.*;
 import java.util.Random;
 
 import static org.academiadecodigo.cunnilinux.acgame.Move.STANDING;
 
 public class Game {
     private boolean bothAlive = true;
-    public static final long DELAY = 150;
+    public static final long DELAY = 100;
+
     private Player player1;
     private Player player2;
     private Scenario scenario;
 
+    Robot KeyboardArbiter = new Robot();
 
-    public Game() throws InterruptedException {
+    public Game() throws InterruptedException, AWTException {
         // TODO PUT PLAYER & SCENARIO SELECTION MENUS
         //////////////////////////////////////////////////////////
         //////////              PLAYER 1              ////////////
@@ -83,15 +86,10 @@ public class Game {
         //FrontPage startMenu = new FrontPage();
     }
 
-    public int playersDistance() {
-        return Math.abs(player2.getX() - player1.getX());
-    }
-
     public void startFrontPage() {
         // FRONT PAGE - LOGO & MUSIC
         FrontPage frontPage = new FrontPage();
     }
-
     public void playerSelection() {
 
     }
@@ -115,7 +113,6 @@ public class Game {
             Player secondPlayer = firstPlayer.getOpponent();
             firstPlayer.showCurrMovePic();
             secondPlayer.showCurrMovePic();
-
             // THEN WAIT A SPLIT OF A SECOND
             Thread.sleep(DELAY);
 

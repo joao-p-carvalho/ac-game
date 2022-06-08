@@ -45,15 +45,15 @@ public enum Characters {
     //------------------------------//
     //          WALK FORWARD:       //
     //------------------------------//
-    String walkForwardPicsChar0 = "c0wf1.png,c0wf2.png,c0wf3.png,c0wf4.png,c0wf5.png,c0wf6.png,c0wf7.png,c0wf8.png";
-    String walkForwardPicsChar1 = "c1wf1.png,c1wf2.png,c1wf3.png,c1wf4.png,c1wf5.png,c1wf6.png,c1wf7.png,c1wf8.png";
-    String walkForwardPicsChar2 = "c2wf1.png,c2wf2.png,c2wf3.png,c2wf4.png,c2wf5.png,c2wf6.png,c2wf7.png,c2wf8.png";
-    String walkForwardPicsChar3 = "c3wf1.png,c3wf2.png,c3wf3.png,c3wf4.png,c3wf5.png,c3wf6.png,c3wf7.png,c3wf8.png";
+    String walkForwardPicsChar0 = "c0s0.png,c0s1.png,c0s2.png";
+    String walkForwardPicsChar1 = "c1s0.png,c1s1.png,c1s2.png";
+//    String walkForwardPicsChar2 = "c2wf1.png,c2wf2.png,c2wf3.png,c2wf4.png,c2wf5.png,c2wf6.png,c2wf7.png,c2wf8.png";
+//    String walkForwardPicsChar3 = "c3wf1.png,c3wf2.png,c3wf3.png,c3wf4.png,c3wf5.png,c3wf6.png,c3wf7.png,c3wf8.png";
     private String[] walkForwardPics = {
             walkForwardPicsChar0,
             walkForwardPicsChar1,
-            walkForwardPicsChar2,
-            walkForwardPicsChar3
+//            walkForwardPicsChar2,
+//            walkForwardPicsChar3
     };
     public String getWalkForwardPicFiles(int iChar) {
         return walkForwardPics[iChar];
@@ -61,15 +61,15 @@ public enum Characters {
     //------------------------------//
     //          WALK BACKWARD:      //
     //------------------------------//
-    String walkBackwardPicsChar0 = "c0wb0.png,c0wb1.png,c0wb2.png,c0wb3.png,c0wb4.png,c0wb5.png,c0wb6.png,c0wb7.png,c0wb8.png";
-    String walkBackwardPicsChar1 = "c1wb0.png,c1wb1.png,c1wb2.png,c1wb3.png,c1wb4.png,c1wb5.png,c1wb6.png,c1wb7.png,c1wb8.png";
-    String walkBackwardPicsChar2 = "c2wb0.png,c2wb1.png,c2wb2.png,c2wb3.png,c2wb4.png,c2wb5.png,c2wb6.png,c2wb7.png,c2wb8.png";
-    String walkBackwardPicsChar3 = "c3wb0.png,c3wb1.png,c3wb2.png,c3wb3.png,c3wb4.png,c3wb5.png,c3wb6.png,c3wb7.png,c3wb8.png";
+    String walkBackwardPicsChar0 = "c0wb0.png,c0wb1.png,c0wb2.png";
+    String walkBackwardPicsChar1 = "c1wb0.png,c1wb1.png,c1wb2.png";
+//    String walkBackwardPicsChar2 = "c2wb0.png,c2wb1.png,c2wb2.png,c2wb3.png,c2wb4.png,c2wb5.png,c2wb6.png,c2wb7.png,c2wb8.png";
+//    String walkBackwardPicsChar3 = "c3wb0.png,c3wb1.png,c3wb2.png,c3wb3.png,c3wb4.png,c3wb5.png,c3wb6.png,c3wb7.png,c3wb8.png";
     private String[] walkBackwardPics = {
             walkBackwardPicsChar0,
             walkBackwardPicsChar1,
-            walkBackwardPicsChar2,
-            walkBackwardPicsChar3
+//            walkBackwardPicsChar2,
+//            walkBackwardPicsChar3
     };
     //------------------------------//
     //            PUNCH:            //

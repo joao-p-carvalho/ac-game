@@ -16,11 +16,9 @@ public class KeyboardHandlerPlayer2 implements KeyboardHandler {
         switch(keyboardEvent.getKey()) {
             case 37: // <-LEFT
                 player2.setCurrentMove(WALKFORWARD);
-                player2.walkForward();
                 break;
             case 39: // ->RIGHT
                 player2.setCurrentMove(WALKBACKWARD);
-                player2.walkBackward();
                 break;
             case 73: // I: PUNCH
                 player2.setCurrentMove(PUNCH);
