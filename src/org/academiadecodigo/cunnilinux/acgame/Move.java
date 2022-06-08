@@ -1,5 +1,5 @@
 package org.academiadecodigo.cunnilinux.acgame;
 
-public enum WhatNow {
+public enum Move {
     STANDING,WALKFORWARD,WALKBACKWARD,PUNCH,GOTPUNCHED,SPECIALMOVE
 }

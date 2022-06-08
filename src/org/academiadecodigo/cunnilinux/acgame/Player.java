@@ -2,50 +2,19 @@ package org.academiadecodigo.cunnilinux.acgame;
 
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
-import static org.academiadecodigo.cunnilinux.acgame.WhatNow.PUNCH;
-import static org.academiadecodigo.cunnilinux.acgame.WhatNow.STANDING;
+import static org.academiadecodigo.cunnilinux.acgame.Move.STANDING;
 
 public class Player {
-    private Player opponent;
-
-    private int iterator = 0;
-
-    public void setOpponent(Player opponent) {
-        this.opponent = opponent;
-    }
-
-    private int prevIteration;
-
     private int playerNumber;
-    private WhatNow whatNow;
-
-    public WhatNow getWhatNow() {
-        return whatNow;
-    }
-
-    public void setWhatNow(WhatNow whatNow) {
-        this.whatNow = whatNow;
-    }
-
-    public int getPlayerNumber() {
-        return playerNumber;
-    }
-
-    private boolean keepStanding = true;
     private Characters character;
-    private int iChar;
-
-    public int getiChar() {
-        return iChar;
-    }
-
-    private String name;
-
-    private boolean isStanding;
-    private boolean isWalkingForward;
-    private boolean isWalkingBackward;
-    private boolean isPunching;
-    private boolean isDoingSpecial;
+    private int health;
+    private int x;
+    private int y;
+    private Move currentMove;
+    private Move previousMove;
+    private Player opponent;
+    private int iterator;
+    private int prevIteration;
     private String[] standingPicFiles;
     private String[] walkForwardPicFiles;
     private String[] walkBackwardPicFiles;
@@ -56,26 +25,63 @@ public class Player {
     private Picture[] walkBackwardPics;
     private Picture[] punchPics;
     private Picture[] specialMovePics;
-    private int health;
-    private int x;
-    private int y; // TODO define
-
+    public int getPlayerNumber() {
+        return playerNumber;
+    }
+    public int getX() {
+        return x;
+    }
+    public int getY() {
+        return y;
+    }
     public void setY(int y) {
         this.y = y;
     }
-
     public void setX(int x) {
         this.x = x;
     }
+    public int getIterator() {
+        return iterator;
+    }
+    public void setIterator(int iterator) {
+        this.iterator = iterator;
+    }
+    public void setOpponent(Player opponent) {
+        this.opponent = opponent;
+    }
+    public Player getOpponent() {
+        return opponent;
+    }
+    public int opponentDistance(){
+        return Math.abs(x-opponent.getX());
+    }
+    public void setPrevIteration(int prevIteration) {
+        this.prevIteration = prevIteration;
+    }
+    public int getPrevIteration() {
+        return prevIteration;
+    }
+    public Move getCurrentMove() {
+        return currentMove;
+    }
+    public void setCurrentMove(Move move) {
+        this.currentMove = move;
+        //iterator = 0;
+    }
+    private static final int WALK_INC = 40;
 
-    private static final int WALK_INC = 50;
-
-    public Player(int playerNumber, int x, Characters character,WhatNow whatNow) {
+    ///////////////////////////////////////////////
+    /////////        CONSTRUCTOR        ///////////
+    ///////////////////////////////////////////////
+    public Player(int playerNumber, int x, Characters character) {
         this.playerNumber = playerNumber;
+        //opponent = playerNumber==1 ? ;  : 1;
         this.x = x;
         this.character = character;
-        this.whatNow = whatNow;
-        iChar = character.getCharIndex();
+        this.currentMove = STANDING;
+        this.previousMove = currentMove;
+        iterator = 0;
+        int iChar = character.getCharIndex();
         health = 10;
         y = 100;
         String picDir = "/Users/codecadet/repos/myrepo/academiacodigo/ac-game/src/org/academiadecodigo/cunnilinux/acgame/pics/";
@@ -89,7 +95,7 @@ public class Player {
         punchPicFiles = character.getPunchPicFiles(character.getCharIndex()).split(",");
         punchPics = new Picture[punchPicFiles.length];
         for (int i = 0; i < punchPicFiles.length; i++) {
-            punchPics[i] = new Picture(x, y,picDir + punchPicFiles[i]);
+            punchPics[i] = new Picture(x, y, picDir + punchPicFiles[i]);
         }
 
 /*        // WALK FORWARD PICS
@@ -112,80 +118,109 @@ public class Player {
         }*/
     }
 
-    public boolean isLoopEnd(Picture[] picSequence) {
-        return iterator == picSequence.length - 1;
+
+    public boolean isMoveEnd() {
+        return iterator >= getCurrentMovePics().length - 1;
     }
 
-    public void iteReset(Picture[] picSequence) {
-        if (isLoopEnd(picSequence)) iterator = 0;
+    public void resetIterator() {
+        if (isMoveEnd()) iterator = 0;
     }
 
-    public void showStanding() throws InterruptedException {
-        standingPics[iterator].draw();
-        prevIteration = iterator;
-        iterator++;
-        iteReset(standingPics);
+    public Move getPreviousMove() {
+        return previousMove;
     }
 
-    public void hideStanding() throws InterruptedException {
-        standingPics[prevIteration].delete();
-    }
-
-   public void movePics(Picture[] pics,int distance){
-       for (int i = 0; i < pics.length; i++) {
-           pics[i].translate(distance, 0);
+    public void moveAllPics(int distance) {
+        for (int i = 0; i < standingPics.length; i++) {
+            standingPics[i].translate(distance, 0);
+        }
+        for (int i = 0; i < punchPics.length; i++) {
+            punchPics[i].translate(distance, 0);
+        }
+/*       for (int i = 0; i < walkForwardPics.length; i++) {
+           walkForwardPics[i].translate(distance, 0);
        }
-   }
+       for (int i = 0; i < walkBackwardPics.length; i++) {
+           walkBackwardPics[i].translate(distance, 0);
+       }
+       for (int i = 0; i < specialMovePics.length; i++) {
+           specialMovePics[i].translate(distance, 0);
+       }*/
+    }
+    public void punch(){
 
+    }
     public void walkForward() {
         int distance = WALK_INC;
         if (playerNumber == 2) distance = -WALK_INC;
-        movePics(standingPics,distance);
+        moveAllPics(distance);
     }
 
     public void walkBackward() {
         int distance = -WALK_INC;
         if (playerNumber == 2) distance = WALK_INC;
-        movePics(standingPics,distance);
+        moveAllPics(distance);
     }
 
-    public void showAction() throws InterruptedException {
-        switch (whatNow) {
+    public Picture[] getCurrentMovePics() {
+        switch (currentMove) {
+            case STANDING:
+                return standingPics;
+            case WALKBACKWARD:
+                return standingPics;
+            case WALKFORWARD:
+                return standingPics;
+            case PUNCH:
+                return punchPics;
+        }
+        return null;
+    }
+
+    public void showCurrMovePic() throws InterruptedException {
+        switch (currentMove) {
             case STANDING:
                 standingPics[iterator].draw();
                 break;
             case WALKBACKWARD:
                 standingPics[iterator].draw();
-                walkBackward();
                 break;
             case WALKFORWARD:
                 standingPics[iterator].draw();
-                walkForward();
                 break;
             case PUNCH:
                 punchPics[iterator].draw();
         }
         prevIteration = iterator;
-        iterator++;
-        iteReset(standingPics);
+        //iterator++;
+        //iteReset();
     }
 
-    public void hideAction() throws InterruptedException {
-        switch (whatNow) {
+    public void hideMovePic(Move move, int i) {
+        switch (move) {
             case STANDING:
-                standingPics[iterator].delete();
+                standingPics[i].delete();
                 break;
             case WALKBACKWARD:
-                standingPics[iterator].delete();
-                walkBackward();
+                standingPics[i].delete();
                 break;
             case WALKFORWARD:
-                standingPics[iterator].delete();
-                walkForward();
+                standingPics[i].delete();
                 break;
             case PUNCH:
-                punchPics[iterator].delete();
+                punchPics[i].delete();
         }
+    }
+
+    public void hideAllMovePics() {
+        for (Move move : Move.values()) {
+            for (int i = 0; i < iterator; i++) {
+                hideMovePic(move, i);
+                //System.out.println(move);
+                //hideMovePic(previousMove,i);
+            }
+        }
+        iterator = 0;
     }
 
     public void specialMove() {
@@ -207,4 +242,5 @@ public class Player {
     public int getHealth() {
         return health;
     }
+
 }

@@ -3,7 +3,7 @@ package org.academiadecodigo.cunnilinux.acgame;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 
-import static org.academiadecodigo.cunnilinux.acgame.WhatNow.*;
+import static org.academiadecodigo.cunnilinux.acgame.Move.*;
 
 public class KeyboardHandlerPlayer1 implements KeyboardHandler {
     Player player1;
@@ -15,16 +15,19 @@ public class KeyboardHandlerPlayer1 implements KeyboardHandler {
     public void keyPressed(KeyboardEvent keyboardEvent) {
         switch(keyboardEvent.getKey()) {
             case 65: // A
-                player1.setWhatNow(WALKBACKWARD);
+                player1.setCurrentMove(WALKBACKWARD);
+                player1.walkBackward();
                 break;
             case 68: // D
-                player1.setWhatNow(WALKFORWARD);
+                player1.setCurrentMove(WALKFORWARD);
+                player1.walkForward();
                 break;
             case 67: // C
-                player1.setWhatNow(PUNCH);
+                player1.setCurrentMove(PUNCH);
+                player1.punch();
                 break;
             case 66: // B
-                player1.setWhatNow(SPECIALMOVE);
+                player1.setCurrentMove(SPECIALMOVE);
                 //break;
             //case 86: // V
             //    player.kick();
@@ -48,7 +51,8 @@ public class KeyboardHandlerPlayer1 implements KeyboardHandler {
                 //case 79: // V: KICK
                 //case 38: // W: UP
                 //case 83: // S: DOWN
-                player1.setWhatNow(STANDING);
+                player1.hideAllMovePics();
+                player1.setCurrentMove(STANDING);
                 break;
             //break;
             //case 86: // V
